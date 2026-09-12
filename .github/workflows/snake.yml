@@ -1,16 +1,12 @@
-# Path: .github/workflows/snake.yml
-# Ei file ta tomar mosfick21 repo te .github/workflows/ folder er
-# vitore rakhte hobe. Er por README er snake line ta uncomment korbe.
 
-name: Generate Snake Animation
+name: snake
 
 on:
   schedule:
     - cron: "0 */12 * * *"
   workflow_dispatch:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   build:
@@ -18,9 +14,10 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: Platane/snk/svg-only@v3
+      - uses: Platane/snk@v3
+        id: snake
         with:
-          github_user_name: mosfick21
+          github_user_name: ${{ github.repository_owner }}
           outputs: |
             dist/snake.svg
             dist/snake-dark.svg?palette=github-dark
